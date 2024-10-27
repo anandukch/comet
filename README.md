@@ -33,7 +33,7 @@ Comet automatically identifies comments based on file type, using the correct de
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/your-username/comet.git
+   git clone https://github.com/anandukch/comet.git
    cd comet
 2. **Install Dependencies** Ensure you have Go installed on your system. Run:
 
