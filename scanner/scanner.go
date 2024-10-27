@@ -31,7 +31,6 @@ type Comment struct {
 }
 
 var comments []Comment
-var commentsByFile = make(map[string][]Comment)
 
 // ScanProject initiates scanning for comments in the provided directory
 func ScanProject(dir string) {
@@ -106,8 +105,6 @@ func detectComments(filePath, delimiter string) {
 	err = docs.SaveDocumentation("comments.txt", docsComments)
 	if err != nil {
 		fmt.Printf("Error saving documentation: %v\n", err)
-	} else {
-		fmt.Println("Documentation saved to comments.txt")
 	}
 }
 

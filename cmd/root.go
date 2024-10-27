@@ -13,7 +13,13 @@ var rootCmd = &cobra.Command{
     Short: "Comet is a CLI tool to scan and document comments in code files",
     Run: func(cmd *cobra.Command, args []string) {
         fmt.Println("Starting comment scan...")
-        scanner.ScanProject(".")
+        path := "."
+        if len(args) > 0 {
+            path = args[0]
+        }
+        
+        fmt.Printf("Starting comment scan in directory: %s\n", path)
+        scanner.ScanProject(path)
         // scanner.RemoveComments() // Call to prompt for removal
     },
 }
