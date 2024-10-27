@@ -31,19 +31,23 @@ Comet automatically identifies comments based on file type, using the correct de
 ## 🔧 Installation
 
 1. **Clone the Repository**
+
    ```bash
    git clone https://github.com/your-username/comet.git
    cd comet
 2. **Install Dependencies** Ensure you have Go installed on your system. Run:
+
     ```bash
     go mod tidy
 3. **Build the CLI**
+
     ```bash
     go build
 
 ## 🛠 Usage
 
 ### Basic Usage
+
 Run Comet to scan for comments in the current directory:
 
 ```bash
@@ -51,12 +55,15 @@ Run Comet to scan for comments in the current directory:
 ```
 
 ### Scan a Specific Directory
+
 Provide a project path to scan for comments in that specific folder:
 
 ```bash
 ./comet /path/to/your/project
 ```
+
 ### Generated Documentation
+
 After scanning, Comet will generate a `comments.txt` file in the project root with a structured list of comments:
 
 ```bash
