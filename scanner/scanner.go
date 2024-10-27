@@ -31,7 +31,6 @@ type Comment struct {
 
 var comments []Comment
 
-// ScanProject initiates scanning for comments in the provided directory
 func ScanProject(dir string) {
 	err := filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
@@ -72,11 +71,6 @@ func detectComments(filePath, delimiter string) {
 
 			linesToRemove = append(linesToRemove, i)
 
-			// // Prompt the user for removal
-			// if promptForRemoval(comment) {
-			// 	lines[i] = "" // Remove the comment line
-			// 	fmt.Printf("Comment removed from %s:%d\n", filePath, i+1)
-			// }
 		}
 	}
 
@@ -84,13 +78,11 @@ func detectComments(filePath, delimiter string) {
 		removeComments(filePath, lines, linesToRemove)
 	}
 
-	// Save updated file content
 	err = saveUpdatedFile(filePath, lines)
 	if err != nil {
 		fmt.Println("Error saving updated file:", err)
 	}
 
-	// Convert comments to docs format
 	docsComments := make([]docs.Comment, len(comments))
 	for i, c := range comments {
 		docsComments[i] = docs.Comment{
@@ -100,20 +92,11 @@ func detectComments(filePath, delimiter string) {
 		}
 	}
 
-	// Save documentation to comments.txt
 	err = docs.SaveDocumentation("comments.txt", docsComments)
 	if err != nil {
 		fmt.Printf("Error saving documentation: %v\n", err)
 	}
 }
-
-// promptForRemoval prompts the user to confirm if they want to remove a comment
-// func promptForRemoval(comment Comment) bool {
-// 	reader := bufio.NewReader(os.Stdin)
-// 	fmt.Printf("Found comment at %s:%d - %s. Do you want to remove it? (y/n): ", comment.FilePath, comment.Line, comment.Text)
-// 	text, _ := reader.ReadString('\n')
-// 	return strings.TrimSpace(text) == "y"
-// }
 
 func promptForRemoval(filePath string) bool {
 	reader := bufio.NewReader(os.Stdin)
@@ -125,14 +108,12 @@ func promptForRemoval(filePath string) bool {
 func removeComments(filePath string, lines []string, linesToRemove []int) {
 	for _, i := range linesToRemove {
 		lines[i] = "" // Remove the comment line
-		fmt.Printf("Comment removed from %s:%d\n", filePath, i+1)
+
 	}
+	fmt.Printf("Comment removed from %s\n", filePath)
 
 }
 
-// saveUpdatedFile saves the modified content back to the file
 func saveUpdatedFile(filePath string, lines []string) error {
 	return os.WriteFile(filePath, []byte(strings.Join(lines, "\n")), 0644)
 }
-
-// test comments

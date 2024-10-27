@@ -35,5 +35,5 @@ func SaveDocumentation(filename string, comments []Comment) error {
 	}
 
 	return writer.Flush()
-    
+
 }
