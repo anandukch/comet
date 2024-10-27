@@ -41,6 +41,8 @@ func detectComments(filePath string) {
 		return
 	}
 	lines := strings.Split(string(content), "\n")
+	linesToRemove := []int{}
+	
 	for i, line := range lines {
 		if strings.HasPrefix(strings.TrimSpace(line), "//") {
 			comment := Comment{
@@ -50,12 +52,18 @@ func detectComments(filePath string) {
 			}
 			comments = append(comments, comment)
 
-			// Prompt the user for removal
-			if promptForRemoval(comment) {
-				lines[i] = "" // Remove the comment line
-				fmt.Printf("Comment removed from %s:%d\n", filePath, i+1)
-			}
+			linesToRemove = append(linesToRemove, i)
+
+			// // Prompt the user for removal
+			// if promptForRemoval(comment) {
+			// 	lines[i] = "" // Remove the comment line
+			// 	fmt.Printf("Comment removed from %s:%d\n", filePath, i+1)
+			// }
 		}
+	}
+
+	if len(linesToRemove) > 0 && promptForRemoval(filePath){
+		removeComments(filePath, lines, linesToRemove)
 	}
 
 	// Save updated file content
@@ -84,11 +92,26 @@ func detectComments(filePath string) {
 }
 
 // promptForRemoval prompts the user to confirm if they want to remove a comment
-func promptForRemoval(comment Comment) bool {
+// func promptForRemoval(comment Comment) bool {
+// 	reader := bufio.NewReader(os.Stdin)
+// 	fmt.Printf("Found comment at %s:%d - %s. Do you want to remove it? (y/n): ", comment.FilePath, comment.Line, comment.Text)
+// 	text, _ := reader.ReadString('\n')
+// 	return strings.TrimSpace(text) == "y"
+// }
+
+func promptForRemoval(filePath string) bool {
 	reader := bufio.NewReader(os.Stdin)
-	fmt.Printf("Found comment at %s:%d - %s. Do you want to remove it? (y/n): ", comment.FilePath, comment.Line, comment.Text)
+	fmt.Printf("Found comment at %s. Do you want to remove it? (y/n): ", filePath)
 	text, _ := reader.ReadString('\n')
 	return strings.TrimSpace(text) == "y"
+}
+
+func removeComments(filePath string, lines []string, linesToRemove []int) {
+	for _, i := range linesToRemove {
+		lines[i] = "" // Remove the comment line
+		fmt.Printf("Comment removed from %s:%d\n", filePath, i+1)
+	}
+
 }
 
 // saveUpdatedFile saves the modified content back to the file

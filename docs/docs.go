@@ -7,24 +7,6 @@ import (
 	"strings"
 )
 
-// // SaveDocumentation saves detected comments in a structured format
-// func SaveDocumentation(filePath string, comments []string) {
-//     file, err := os.Create(filePath)
-//     if err != nil {
-//         fmt.Println("Error creating documentation file:", err)
-//         return
-//     }
-//     defer file.Close()
-
-//     for _, comment := range comments {
-//         _, err := file.WriteString(comment + "\n")
-//         if err != nil {
-//             fmt.Println("Error writing to documentation file:", err)
-//         }
-//     }
-//     fmt.Println("Documentation saved at", filePath)
-// }
-
 type Comment struct {
     FilePath string
     Line     int
