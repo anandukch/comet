@@ -1,0 +1,20 @@
+cmd/root.go
+Line 17: // scanner.RemoveComments() // Call to prompt for removal
+
+docs/docs.go
+Line 10: // // SaveDocumentation saves detected comments in a structured format
+Line 11: // func SaveDocumentation(filePath string, comments []string) {
+Line 12: //     file, err := os.Create(filePath)
+Line 13: //     if err != nil {
+Line 14: //         fmt.Println("Error creating documentation file:", err)
+Line 15: //         return
+Line 16: //     }
+Line 17: //     defer file.Close()
+Line 19: //     for _, comment := range comments {
+Line 20: //         _, err := file.WriteString(comment + "\n")
+Line 21: //         if err != nil {
+Line 22: //             fmt.Println("Error writing to documentation file:", err)
+Line 23: //         }
+Line 24: //     }
+Line 25: //     fmt.Println("Documentation saved at", filePath)
+Line 26: // }
