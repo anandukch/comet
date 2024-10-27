@@ -1,22 +1,22 @@
 cmd/root.go
-Line 17: // scanner.RemoveComments() // Call to prompt for removal
+Line 23: // scanner.RemoveComments() // Call to prompt for removal
 
 scanner/scanner.go
-Line 35: // ScanProject initiates scanning for comments in the provided directory
-Line 76: // // Prompt the user for removal
-Line 77: // if promptForRemoval(comment) {
-Line 78: // 	lines[i] = "" // Remove the comment line
-Line 79: // 	fmt.Printf("Comment removed from %s:%d\n", filePath, i+1)
-Line 80: // }
-Line 88: // Save updated file content
-Line 94: // Convert comments to docs format
-Line 104: // Save documentation to comments.txt
-Line 111: // promptForRemoval prompts the user to confirm if they want to remove a comment
-Line 112: // func promptForRemoval(comment Comment) bool {
-Line 113: // 	reader := bufio.NewReader(os.Stdin)
-Line 114: // 	fmt.Printf("Found comment at %s:%d - %s. Do you want to remove it? (y/n): ", comment.FilePath, comment.Line, comment.Text)
-Line 115: // 	text, _ := reader.ReadString('\n')
-Line 116: // 	return strings.TrimSpace(text) == "y"
-Line 117: // }
-Line 134: // saveUpdatedFile saves the modified content back to the file
-Line 139: // test comments
+Line 34: // ScanProject initiates scanning for comments in the provided directory
+Line 75: // // Prompt the user for removal
+Line 76: // if promptForRemoval(comment) {
+Line 77: // 	lines[i] = "" // Remove the comment line
+Line 78: // 	fmt.Printf("Comment removed from %s:%d\n", filePath, i+1)
+Line 79: // }
+Line 87: // Save updated file content
+Line 93: // Convert comments to docs format
+Line 103: // Save documentation to comments.txt
+Line 110: // promptForRemoval prompts the user to confirm if they want to remove a comment
+Line 111: // func promptForRemoval(comment Comment) bool {
+Line 112: // 	reader := bufio.NewReader(os.Stdin)
+Line 113: // 	fmt.Printf("Found comment at %s:%d - %s. Do you want to remove it? (y/n): ", comment.FilePath, comment.Line, comment.Text)
+Line 114: // 	text, _ := reader.ReadString('\n')
+Line 115: // 	return strings.TrimSpace(text) == "y"
+Line 116: // }
+Line 133: // saveUpdatedFile saves the modified content back to the file
+Line 138: // test comments

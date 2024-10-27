@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"comet/docs"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -54,7 +53,7 @@ func isSupportedFile(ext string) bool {
 }
 
 func detectComments(filePath, delimiter string) {
-	content, err := ioutil.ReadFile(filePath)
+	content, err := os.ReadFile(filePath)
 	if err != nil {
 		fmt.Println("Error reading file:", err)
 		return
@@ -133,7 +132,7 @@ func removeComments(filePath string, lines []string, linesToRemove []int) {
 
 // saveUpdatedFile saves the modified content back to the file
 func saveUpdatedFile(filePath string, lines []string) error {
-	return ioutil.WriteFile(filePath, []byte(strings.Join(lines, "\n")), 0644)
+	return os.WriteFile(filePath, []byte(strings.Join(lines, "\n")), 0644)
 }
 
 // test comments
