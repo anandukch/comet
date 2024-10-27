@@ -95,3 +95,5 @@ func promptForRemoval(comment Comment) bool {
 func saveUpdatedFile(filePath string, lines []string) error {
 	return ioutil.WriteFile(filePath, []byte(strings.Join(lines, "\n")), 0644)
 }
+
+// test comments
