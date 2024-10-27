@@ -37,7 +37,7 @@ func ScanProject(dir string) {
 			return err
 		}
 		ext := filepath.Ext(path)
-		if !info.IsDir() && isSupportedFile(ext) { // Scans only Go files for simplicity
+		if !info.IsDir() && isSupportedFile(ext) {
 			detectComments(path, commentDelimiters[ext])
 		}
 		return nil
