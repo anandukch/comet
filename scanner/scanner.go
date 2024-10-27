@@ -1,14 +1,28 @@
 package scanner
 
 import (
-	"comet/docs"
 	"bufio"
+	"comet/docs"
 	"fmt"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
 )
+
+var commentDelimiters = map[string]string{
+	".go":   "//",
+	".py":   "#",
+	".js":   "//",
+	".java": "//",
+	".c":    "//",
+	".cpp":  "//",
+	".rb":   "#",
+	".php":  "//",
+	".rs":   "//",
+	".cs":   "//",
+	".ts":   "//",
+}
 
 type Comment struct {
 	FilePath string
@@ -17,6 +31,7 @@ type Comment struct {
 }
 
 var comments []Comment
+var commentsByFile = make(map[string][]Comment)
 
 // ScanProject initiates scanning for comments in the provided directory
 func ScanProject(dir string) {
@@ -24,8 +39,9 @@ func ScanProject(dir string) {
 		if err != nil {
 			return err
 		}
-		if !info.IsDir() && filepath.Ext(path) == ".go" { // Scans only Go files for simplicity
-			detectComments(path)
+		ext := filepath.Ext(path)
+		if !info.IsDir() && isSupportedFile(ext) { // Scans only Go files for simplicity
+			detectComments(path, commentDelimiters[ext])
 		}
 		return nil
 	})
@@ -33,8 +49,12 @@ func ScanProject(dir string) {
 		fmt.Println("Error scanning project:", err)
 	}
 }
+func isSupportedFile(ext string) bool {
+	_, exists := commentDelimiters[ext]
+	return exists
+}
 
-func detectComments(filePath string) {
+func detectComments(filePath, delimiter string) {
 	content, err := ioutil.ReadFile(filePath)
 	if err != nil {
 		fmt.Println("Error reading file:", err)
@@ -42,9 +62,9 @@ func detectComments(filePath string) {
 	}
 	lines := strings.Split(string(content), "\n")
 	linesToRemove := []int{}
-	
+
 	for i, line := range lines {
-		if strings.HasPrefix(strings.TrimSpace(line), "//") {
+		if strings.HasPrefix(strings.TrimSpace(line), delimiter) {
 			comment := Comment{
 				FilePath: filePath,
 				Line:     i + 1,
@@ -62,7 +82,7 @@ func detectComments(filePath string) {
 		}
 	}
 
-	if len(linesToRemove) > 0 && promptForRemoval(filePath){
+	if len(linesToRemove) > 0 && promptForRemoval(filePath) {
 		removeComments(filePath, lines, linesToRemove)
 	}
 

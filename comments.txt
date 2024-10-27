@@ -2,21 +2,21 @@ cmd/root.go
 Line 17: // scanner.RemoveComments() // Call to prompt for removal
 
 scanner/scanner.go
-Line 21: // ScanProject initiates scanning for comments in the provided directory
-Line 57: // // Prompt the user for removal
-Line 58: // if promptForRemoval(comment) {
-Line 59: // 	lines[i] = "" // Remove the comment line
-Line 60: // 	fmt.Printf("Comment removed from %s:%d\n", filePath, i+1)
-Line 61: // }
-Line 69: // Save updated file content
-Line 75: // Convert comments to docs format
-Line 85: // Save documentation to comments.txt
-Line 94: // promptForRemoval prompts the user to confirm if they want to remove a comment
-Line 95: // func promptForRemoval(comment Comment) bool {
-Line 96: // 	reader := bufio.NewReader(os.Stdin)
-Line 97: // 	fmt.Printf("Found comment at %s:%d - %s. Do you want to remove it? (y/n): ", comment.FilePath, comment.Line, comment.Text)
-Line 98: // 	text, _ := reader.ReadString('\n')
-Line 99: // 	return strings.TrimSpace(text) == "y"
-Line 100: // }
-Line 117: // saveUpdatedFile saves the modified content back to the file
-Line 122: // test comments
+Line 36: // ScanProject initiates scanning for comments in the provided directory
+Line 77: // // Prompt the user for removal
+Line 78: // if promptForRemoval(comment) {
+Line 79: // 	lines[i] = "" // Remove the comment line
+Line 80: // 	fmt.Printf("Comment removed from %s:%d\n", filePath, i+1)
+Line 81: // }
+Line 89: // Save updated file content
+Line 95: // Convert comments to docs format
+Line 105: // Save documentation to comments.txt
+Line 114: // promptForRemoval prompts the user to confirm if they want to remove a comment
+Line 115: // func promptForRemoval(comment Comment) bool {
+Line 116: // 	reader := bufio.NewReader(os.Stdin)
+Line 117: // 	fmt.Printf("Found comment at %s:%d - %s. Do you want to remove it? (y/n): ", comment.FilePath, comment.Line, comment.Text)
+Line 118: // 	text, _ := reader.ReadString('\n')
+Line 119: // 	return strings.TrimSpace(text) == "y"
+Line 120: // }
+Line 137: // saveUpdatedFile saves the modified content back to the file
+Line 142: // test comments
