@@ -1,10 +1,10 @@
-# 🌠 Comet: The Ultimate Code Comment Management CLI Tool 🌠
+# Comet: Code Comment Management CLI
 
-**Comet** is a powerful CLI tool designed to help developers scan, detect, manage, and document comments in code files. It supports multiple programming languages and allows you to remove comments with a single command, as well as generate comprehensive documentation of the comments. Perfect for cleaner code, streamlined collaboration, and effortless documentation!
+Comet is a command-line tool for scanning, managing, and documenting code comments across multiple languages. It helps developers detect, remove, or export comments with ease—keeping code clean, consistent, and well-documented.
 
 ---
 
-## 🚀 Features
+## Features
 
 - **Multi-Language Support**: Detects comments in various programming languages (Go, Python, C, and more) based on file type.
 - **Automatic Documentation**: Saves all comments in a structured format in `comments.txt`, including file paths and line numbers.
